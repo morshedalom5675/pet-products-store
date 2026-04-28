@@ -69,7 +69,6 @@ const ProductProcess = () => {
                 </p>
               </div>
 
-              {/* বাটন বর্ডার চিকন (border) এবং হালকা করা হয়েছে */}
               <button 
                 className="font-bold text-[10px] uppercase tracking-wider border px-6 py-3 rounded-full transition-all duration-300"
                 style={{ 

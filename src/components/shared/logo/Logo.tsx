@@ -1,10 +1,10 @@
+"use client"
 import Image from "next/image";
-import React from "react";
 import logo from "@/src/app/assets/logo/logo2.png";
 
 const Logo = () => {
   return (
-    <div className="flex items-center gap-2"> {/* গ্যাপ যোগ করা হয়েছে */}
+    <div className="flex items-center gap-2"> 
       <Image 
         src={logo} 
         alt="PawVibe Logo" 

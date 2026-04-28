@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Container from "../../shared/container/Container";
 import Logo from "../../shared/logo/Logo";
 import { FaFacebookF, FaTwitter, FaInstagram, FaPhoneAlt } from "react-icons/fa";

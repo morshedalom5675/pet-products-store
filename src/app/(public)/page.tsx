@@ -1,8 +1,11 @@
 import Footer from "@/src/components/section/footer/Footer";
 import ContactSection from "@/src/components/section/HomeSection/ContactSection";
 import Hero from "@/src/components/section/HomeSection/Hero";
-import Spotlight from "@/src/components/section/HomeSection/OfferSection";
+import OfferSection from "@/src/components/section/HomeSection/OfferSection";
 import ProductProcess from "@/src/components/section/HomeSection/ProductsProcess";
+import TestimonialSection from "@/src/components/section/HomeSection/TestimonialSection";
+import TopCategories from "@/src/components/section/HomeSection/TopCategories";
+import TrendingProducts from "@/src/components/section/HomeSection/TrendingProducts";
 import Navbar from "@/src/components/section/navbar/Navbar";
 
 export default function Home() {
@@ -10,10 +13,13 @@ export default function Home() {
     <div>
       <Navbar />
       <Hero />
-      <Spotlight />
+      <TrendingProducts />
+      <TopCategories/>
+      <OfferSection/>
       <ProductProcess />
+      <TestimonialSection/>
       <ContactSection />
-      <Footer/>
+      <Footer />
     </div>
   );
 }

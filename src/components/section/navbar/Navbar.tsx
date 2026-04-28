@@ -88,7 +88,7 @@ const Navbar = () => {
               >
                 <Heart size={20} />
               </Button>
-              <div className="w-[1px] h-4 bg-[#E5D5BC] mx-1" />
+              <div className="w-px h-4 bg-[#E5D5BC] mx-1" />
               <Button
                 variant="ghost"
                 size="icon"
