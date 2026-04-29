@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation"; 
 import { cn } from "@/src/lib/utils";
 import { Button } from "@/src/components/ui/button";
 import Logo from "../../shared/logo/Logo";
@@ -17,6 +18,7 @@ import Container from "../../shared/container/Container";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname(); 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,11 +29,11 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#" },
-    { name: "Services", href: "#" },
-    { name: "Process", href: "#" },
-    { name: "Pricing", href: "#" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
+    { name: "Products", href: "/products" },
+    { name: "Categories", href: "/categories" },
   ];
 
   return (
@@ -57,21 +59,25 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center bg-white/60 border border-white/40 p-2 rounded-full shadow-sm">
               <ul className="flex items-center">
-                {navLinks.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className={cn(
-                        "px-5 py-2 rounded-full text-[13px] font-bold transition-all duration-300",
-                        link.name === "Home"
-                          ? "bg-[#0F172A] text-white shadow-md"
-                          : "text-[#475569] hover:text-[#0F172A]",
-                      )}
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
+                {navLinks.map((link) => {
+                  const isActive = pathname === link.href;
+
+                  return (
+                    <li key={link.name}>
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          "px-5 py-2 rounded-full text-[13px] font-bold transition-all duration-300",
+                          isActive
+                            ? "bg-[#0F172A] text-white shadow-md" 
+                            : "text-[#475569] hover:text-[#0F172A]", 
+                        )}
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
 
               <Button className="rounded-full bg-[#D4E26A] hover:bg-[#C5D35B] text-[#0F172A] px-6 py-4 font-bold text-[13px] ml-2 shadow-sm transition-transform active:scale-95">
@@ -124,26 +130,29 @@ const Navbar = () => {
                   </SheetHeader>
 
                   <div className="flex flex-col gap-3">
-                    {navLinks.map((link) => (
-                      <Link
-                        key={link.name}
-                        href={link.href}
-                        className={cn(
-                          "text-[15px] font-bold px-6 py-4 rounded-full transition-all duration-300 flex items-center justify-between group",
-                          link.name === "Home"
-                            ? "bg-[#0F172A] text-white shadow-lg shadow-[#0F172A]/10"
-                            : "text-[#475569] hover:bg-white hover:text-[#0F172A] hover:translate-x-2",
-                        )}
-                      >
-                        {link.name}
+                    {navLinks.map((link) => {
+                      const isActive = pathname === link.href;
 
-                        {link.name !== "Home" && (
-                          <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                            →
-                          </span>
-                        )}
-                      </Link>
-                    ))}
+                      return (
+                        <Link
+                          key={link.name}
+                          href={link.href}
+                          className={cn(
+                            "text-[15px] font-bold px-6 py-4 rounded-full transition-all duration-300 flex items-center justify-between group",
+                            isActive
+                              ? "bg-[#0F172A] text-white shadow-lg shadow-[#0F172A]/10"
+                              : "text-[#475569] hover:bg-white hover:text-[#0F172A] hover:translate-x-2",
+                          )}
+                        >
+                          {link.name}
+                          {!isActive && (
+                            <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                              →
+                            </span>
+                          )}
+                        </Link>
+                      );
+                    })}
 
                     <div className="mt-6 pt-6 border-t border-[#E5D5BC]">
                       <Button className="w-full rounded-full bg-[#D4E26A] hover:bg-[#C5D35B] text-[#0F172A] py-7 font-black text-base shadow-md transition-all active:scale-95">
