@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import ProductCard from "../../shared/card/ProductCard";
 import Container from "../../shared/container/Container";
 
@@ -52,9 +53,9 @@ const TrendingProducts = () => {
               Trending Products
             </h2>
           </div>
-          <button className="text-[#0F172A] font-semibold border-b-2 border-[#FBBF24] hover:text-[#FBBF24] transition-colors cursor-pointer">
+          <Link className="text-[#0F172A] font-semibold border-b-2 border-[#FBBF24] hover:text-[#FBBF24] transition-colors cursor-pointer" href="/products">
             View All Products
-          </button>
+          </Link>
         </div>
 
         {/* products grid */}

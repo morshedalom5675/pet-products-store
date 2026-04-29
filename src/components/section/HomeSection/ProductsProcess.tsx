@@ -1,36 +1,51 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Container from "../../shared/container/Container";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/src/components/ui/dialog"; 
 
 const productProcessSteps = [
   {
     icon: "🦴",
     title: "Premium Food Supplies",
-    description:
-      "We provide high-quality organic food that ensures your pet's health, energy levels, and a shiny coat every single day with balanced nutrition.", 
+    description: "We provide high-quality organic food that ensures your pet's health, energy levels, and a shiny coat every single day with balanced nutrition.",
+    details: "Our organic food collection is sourced from the finest ingredients. It includes essential vitamins, omega fatty acids, and minerals. We avoid artificial preservatives to ensure your pet gets the most natural diet possible.",
     themeColor: "#A2C75F",
     lightColor: "#E1F1A7",
   },
   {
     icon: "🎾",
     title: "Interactive Play Gears",
-    description:
-      "Our collection of durable and safe toys keeps your furry friends mentally active, physically fit, and always entertained during playtime.", 
+    description: "Our collection of durable and safe toys keeps your furry friends mentally active, physically fit, and always entertained during playtime.",
+    details: "Play is vital for a pet's mental health. Our gear includes puzzles, heavy-duty chew toys, and interactive launchers designed to challenge their instincts and keep them physically active throughout the day.",
     themeColor: "#FACC15",
     lightColor: "#FEF9C3",
   },
   {
     icon: "🛁",
     title: "Essential Grooming Kits",
-    description:
-      "From grooming tools to hygiene essentials, we offer everything needed to keep your pets clean, fresh, and happy in their daily life.", 
+    description: "From grooming tools to hygiene essentials, we offer everything needed to keep your pets clean, fresh, and happy in their daily life.",
+    details: "Our grooming kits feature professional-grade brushes, pH-balanced shampoos, and nail trimmers. Regular grooming not only keeps your pet smelling fresh but also helps in early detection of skin issues.",
     themeColor: "#FB923C",
     lightColor: "#FFEDD5",
   },
 ];
 
 const ProductProcess = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedStep, setSelectedStep] = useState<typeof productProcessSteps[0] | null>(null);
+
+  const handleLearnMore = (step: typeof productProcessSteps[0]) => {
+    setSelectedStep(step);
+    setIsOpen(true);
+  };
+
   return (
     <section className="relative bg-[#FDF7F1] py-12 lg:py-16 overflow-hidden font-jakarta">
       <Container>
@@ -50,31 +65,29 @@ const ProductProcess = () => {
               className="bg-white px-6 py-10 rounded-[15px] shadow-[0_2px_10px_rgba(0,0,0,0.01)] border border-gray-50 flex flex-col items-center justify-between"
             >
               <div className="text-center flex flex-col items-center mb-6 w-full">
-                <div 
+                <div
                   className="text-5xl mb-6 flex items-center justify-center h-24 w-24 rounded-full border-4 shadow-inner"
-                  style={{ 
-                    borderColor: step.themeColor, 
-                    color: step.themeColor, 
-                    backgroundColor: step.lightColor 
+                  style={{
+                    borderColor: step.themeColor,
+                    color: step.themeColor,
+                    backgroundColor: step.lightColor,
                   }}
                 >
                   {step.icon}
                 </div>
 
-                <h3 className="text-lg font-bold text-[#0F172A] mb-3">
-                  {step.title}
-                </h3>
+                <h3 className="text-lg font-bold text-[#0F172A] mb-3">{step.title}</h3>
                 <p className="text-[#475569] text-xs md:text-sm leading-relaxed text-center px-2">
                   {step.description}
                 </p>
               </div>
 
-              <button 
-                className="font-bold text-[10px] uppercase tracking-wider border px-6 py-3 rounded-full transition-all duration-300"
-                style={{ 
-                  color: step.themeColor, 
-                  
-                  borderColor: `${step.themeColor}80` 
+              <button
+                onClick={() => handleLearnMore(step)} 
+                className="font-bold text-[10px] uppercase tracking-wider border px-6 py-3 rounded-full transition-all duration-300 cursor-pointer"
+                style={{
+                  color: step.themeColor,
+                  borderColor: `${step.themeColor}80`,
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = step.lightColor;
@@ -90,6 +103,42 @@ const ProductProcess = () => {
             </div>
           ))}
         </div>
+
+        {/* Modal / Dialog Section */}
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <DialogContent className="bg-white rounded-3xl max-w-md sm:max-w-lg border-none shadow-2xl">
+            {selectedStep && (
+              <div className="flex flex-col items-center text-center p-4">
+                <div 
+                  className="text-6xl mb-6 h-28 w-28 rounded-full flex items-center justify-center border-4"
+                  style={{ 
+                    backgroundColor: selectedStep.lightColor, 
+                    borderColor: selectedStep.themeColor 
+                  }}
+                >
+                  {selectedStep.icon}
+                </div>
+                <DialogHeader>
+                  <DialogTitle className="text-2xl font-bold text-[#0F172A] mb-2">
+                    {selectedStep.title}
+                  </DialogTitle>
+                  <DialogDescription className="text-[#475569] text-base leading-relaxed">
+                    {selectedStep.details}
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="mt-8 w-full">
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="w-full py-4 rounded-full font-bold text-white transition-all shadow-lg active:scale-95"
+                    style={{ backgroundColor: selectedStep.themeColor }}
+                  >
+                    Close Details
+                  </button>
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
       </Container>
     </section>
   );

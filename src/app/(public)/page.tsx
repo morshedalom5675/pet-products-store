@@ -1,5 +1,6 @@
 import Footer from "@/src/components/section/footer/Footer";
 import ContactSection from "@/src/components/section/HomeSection/ContactSection";
+import FAQSection from "@/src/components/section/HomeSection/FAQsection";
 import Hero from "@/src/components/section/HomeSection/Hero";
 import OfferSection from "@/src/components/section/HomeSection/OfferSection";
 import ProductProcess from "@/src/components/section/HomeSection/ProductsProcess";
@@ -17,7 +18,8 @@ export default function Home() {
       <TopCategories/>
       <OfferSection/>
       <ProductProcess />
-      <TestimonialSection/>
+      <TestimonialSection />
+      <FAQSection/>
       <ContactSection />
       <Footer />
     </div>

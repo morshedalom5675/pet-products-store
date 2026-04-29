@@ -5,6 +5,8 @@ import Image from "next/image";
 import Container from "../../shared/container/Container";
 
 import OfferBannerImg from "@/src/app/assets/image/offer-banner.png"; 
+import Link from "next/link";
+
 
 const OfferSection = () => {
   return (
@@ -49,9 +51,9 @@ const OfferSection = () => {
                   <p className="text-[#475569] text-xs leading-tight mb-4">
                     Save 30% on organic pet food.
                   </p>
-                  <button className="text-[#A2C75F] font-bold text-xs border border-[#E1F1A7] px-6 py-2.5 rounded-full hover:bg-[#E1F1A7] transition-all">
+                  <Link className="text-[#A2C75F] font-bold text-xs border border-[#E1F1A7] px-6 py-2.5 rounded-full hover:bg-[#E1F1A7] transition-all" href={"/products"}>
                     Shop Now
-                  </button>
+                  </Link>
                 </div>
 
                 {/* Offer 2 */}
@@ -60,9 +62,9 @@ const OfferSection = () => {
                   <p className="text-[#475569] text-xs leading-tight mb-4">
                     Extra 30% off on grooming kits.
                   </p>
-                  <button className="text-[#A2C75F] font-bold text-xs border border-[#E1F1A7] px-6 py-2.5 rounded-full hover:bg-[#E1F1A7] transition-all">
+                  <Link className="text-[#A2C75F] font-bold text-xs border border-[#E1F1A7] px-6 py-2.5 rounded-full hover:bg-[#E1F1A7] transition-all" href={"/products"}>
                     Shop Now
-                  </button>
+                  </Link>
                 </div>
 
               </div>

@@ -10,6 +10,7 @@ import cat2 from "@/src/app/assets/image/pet2.jpg";
 import cat3 from "@/src/app/assets/image/pet3.jpg";
 import cat4 from "@/src/app/assets/image/pet3.jpg";
 import cat5 from "@/src/app/assets/image/pets-review.jpg";
+import Link from "next/link";
 
 const categories = [
   { id: 1, name: "Dog Food", items: "120+ Items", image: cat1 },
@@ -66,10 +67,10 @@ const TopCategories = () => {
 
         {/* View All Categories Button */}
         <div className="flex justify-center">
-          <button className="flex items-center gap-2 px-8 py-3 bg-[#A2C75F] text-white font-bold rounded-full hover:bg-[#8eb052]  transition-all duration-300 group shadow-lg cursor-pointer">
+          <Link className="flex items-center gap-2 px-8 py-3 bg-[#A2C75F] text-white font-bold rounded-full hover:bg-[#8eb052]  transition-all duration-300 group shadow-lg cursor-pointer" href="/categories">
             View All Categories
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
         </div>
       </Container>
     </section>
